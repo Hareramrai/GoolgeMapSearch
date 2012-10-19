@@ -35,25 +35,42 @@
                 <h2 class="title"><a href="#">Welcome to localhost</a></h2>
 
                 <div class="entry">
+                    <div class="map_div">
+                        <div class="show_map">
 
-                    <p>
+                            <%                                
+                                
+                                try {
+                                    String address = "Bhubaneswar Station ";
+                                    java.lang.Integer zoom = 15;
+                                    String iframe = "false";
+                                    if (request.getParameter("location") != null) {
+                                        address = request.getParameter("location");
+                                    }
+                                    if (address.isEmpty()) {
+                                        out.println("<span class='text-error'>Search field is blank</span>");                                        
+                                    }
+                                    
+                                    RestResponse result = GoogleMapService.getGoogleMap(address, zoom, iframe);
+                                    out.println(result.getDataAsString());
+                                } catch (Exception ex) {
+                                    ex.printStackTrace();
+                                }
+                                
+                            %>
 
-                    <%
 
-                        try {
-                            String address = "16 Network Circle, Menlo Park";
-                            java.lang.Integer zoom = 15;
-                            String iframe = "false";
-                            RestResponse result = GoogleMapService.getGoogleMap(address, zoom, iframe);                            
-                            out.println("The SaasService returned: "+result.getDataAsString());
-                        } catch (Exception ex) {
-                            ex.printStackTrace();
-                        }
-
-                    %>
-
-
-                    </p>
+                        </div>
+                        <div class="show_search_form">
+                            <form action="index.jsp" method="get">
+                                <p>
+                                    <input type="search"  name="location" placeholder="Enter location" />
+                                    <input type="submit" class="btn"  value="Search">
+                                </p>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="clear_float"/>     
                 </div>
             </div>
         </div>
