@@ -17,7 +17,7 @@
             <div id="header">
                 <div id="logo">
                     <h1><a href="#">Google Location Search</a></h1>
-                    <p>Try for it</p>
+                    <p>Go for it</p>
                 </div>
             </div>
             <!-- end #header -->
